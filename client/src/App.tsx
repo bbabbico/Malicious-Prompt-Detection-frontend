@@ -1,7 +1,7 @@
 /**
  * App.tsx - Routes & top-level layout
- * Design: Obsidian Precision - Dark tech SaaS
- * Routes: / (Home), /docs (API Docs), /keys (API Keys), /login, /register
+ * Design: Light theme - Clean white background
+ * Routes: / (Home), /docs (API Docs), /keys (API Keys), /login, /register, /analysis-result, /advanced-analysis
  */
 
 import { Toaster } from '@/components/ui/sonner';
@@ -18,6 +18,8 @@ import Docs from './pages/Docs';
 import ApiKeys from './pages/ApiKeys';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AnalysisResult from './pages/AnalysisResult';
+import AdvancedAnalysis from './pages/AdvancedAnalysis';
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -48,6 +50,8 @@ function Router() {
       <Route path="/" component={() => <Layout><Home /></Layout>} />
       <Route path="/docs" component={() => <Layout><Docs /></Layout>} />
       <Route path="/keys" component={() => <Layout><ApiKeys /></Layout>} />
+      <Route path="/analysis-result" component={() => <Layout><AnalysisResult /></Layout>} />
+      <Route path="/advanced-analysis" component={() => <Layout><AdvancedAnalysis /></Layout>} />
       <Route path="/login" component={() => <AuthLayout><Login /></AuthLayout>} />
       <Route path="/register" component={() => <AuthLayout><Register /></AuthLayout>} />
       <Route path="/404" component={NotFound} />
@@ -59,7 +63,7 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="dark">
+      <ThemeProvider defaultTheme="light">
         <AuthProvider>
           <TooltipProvider>
             <Toaster />

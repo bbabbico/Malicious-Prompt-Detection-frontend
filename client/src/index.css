@@ -1,6 +1,6 @@
-/* PromptGuard - Obsidian Precision Design System
- * Theme: Dark tech SaaS, similar to OpenRouter
- * Colors: Deep navy-charcoal bg, violet-blue accent, red danger, green safe
+/* PromptGuard - Light Theme Design System
+ * Theme: Clean white background, similar to OpenRouter
+ * Colors: White bg, violet-blue accent, red danger, green safe
  * Fonts: Geist (headings/UI) + Inter (body)
  */
 
@@ -48,45 +48,45 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Dark theme only - Obsidian Precision */
+/* Light theme - Clean white background */
 :root {
   --radius: 0.5rem;
 
   /* Primary: Violet-Blue (indigo) */
   --primary: oklch(0.62 0.22 264);
-  --primary-foreground: oklch(0.98 0.005 264);
+  --primary-foreground: oklch(1 0 0);
 
-  /* Background: Deep navy-charcoal */
-  --background: oklch(0.10 0.008 264);
-  --foreground: oklch(0.93 0.005 264);
+  /* Background: White */
+  --background: oklch(0.99 0.001 286);
+  --foreground: oklch(0.235 0.015 65);
 
-  /* Card: Slightly lighter than background */
-  --card: oklch(0.14 0.008 264);
-  --card-foreground: oklch(0.93 0.005 264);
+  /* Card: White */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.235 0.015 65);
 
   /* Popover */
-  --popover: oklch(0.14 0.008 264);
-  --popover-foreground: oklch(0.93 0.005 264);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.235 0.015 65);
 
   /* Secondary */
-  --secondary: oklch(0.18 0.008 264);
-  --secondary-foreground: oklch(0.85 0.005 264);
+  --secondary: oklch(0.95 0.002 286);
+  --secondary-foreground: oklch(0.4 0.015 65);
 
   /* Muted */
-  --muted: oklch(0.18 0.006 264);
-  --muted-foreground: oklch(0.55 0.01 264);
+  --muted: oklch(0.92 0.004 286);
+  --muted-foreground: oklch(0.552 0.016 286);
 
   /* Accent */
-  --accent: oklch(0.20 0.015 264);
-  --accent-foreground: oklch(0.93 0.005 264);
+  --accent: oklch(0.62 0.22 264 / 0.08);
+  --accent-foreground: oklch(0.62 0.22 264);
 
   /* Destructive: Red for threats */
   --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(0.98 0 0);
+  --destructive-foreground: oklch(1 0 0);
 
   /* Border: Subtle */
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
+  --border: oklch(0.92 0.004 286);
+  --input: oklch(0.96 0.002 286);
   --ring: oklch(0.62 0.22 264);
 
   /* Charts */
@@ -97,13 +97,13 @@
   --chart-5: oklch(0.55 0.20 300);
 
   /* Sidebar */
-  --sidebar: oklch(0.12 0.008 264);
-  --sidebar-foreground: oklch(0.93 0.005 264);
+  --sidebar: oklch(0.99 0.001 286);
+  --sidebar-foreground: oklch(0.235 0.015 65);
   --sidebar-primary: oklch(0.62 0.22 264);
-  --sidebar-primary-foreground: oklch(0.98 0.005 264);
-  --sidebar-accent: oklch(0.18 0.008 264);
-  --sidebar-accent-foreground: oklch(0.93 0.005 264);
-  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.002 286);
+  --sidebar-accent-foreground: oklch(0.62 0.22 264);
+  --sidebar-border: oklch(0.92 0.004 286);
   --sidebar-ring: oklch(0.62 0.22 264);
 }
 
@@ -177,27 +177,27 @@
   .pg-badge-safe {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
     background: oklch(0.65 0.18 145 / 0.15);
-    color: oklch(0.75 0.18 145);
+    color: oklch(0.50 0.18 145);
     border: 1px solid oklch(0.65 0.18 145 / 0.3);
   }
 
   .pg-badge-danger {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
     background: oklch(0.65 0.22 25 / 0.15);
-    color: oklch(0.75 0.22 25);
+    color: oklch(0.50 0.22 25);
     border: 1px solid oklch(0.65 0.22 25 / 0.3);
   }
 
   .pg-badge-warning {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
     background: oklch(0.75 0.18 80 / 0.15);
-    color: oklch(0.80 0.18 80);
+    color: oklch(0.60 0.18 80);
     border: 1px solid oklch(0.75 0.18 80 / 0.3);
   }
 
   .pg-code-block {
     @apply bg-secondary rounded-lg p-4 font-mono text-sm overflow-x-auto;
-    border: 1px solid oklch(1 0 0 / 6%);
+    border: 1px solid oklch(0.92 0.004 286);
   }
 
   .pg-nav-link {
@@ -210,18 +210,18 @@
 
   /* Dot grid background pattern */
   .pg-dot-grid {
-    background-image: radial-gradient(circle, oklch(1 0 0 / 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(circle, oklch(0.62 0.22 264 / 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
   /* Glow effect for primary elements */
   .pg-glow {
-    box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.3), 0 0 60px oklch(0.62 0.22 264 / 0.1);
+    box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.2), 0 0 60px oklch(0.62 0.22 264 / 0.08);
   }
 
   /* Gradient text */
   .pg-gradient-text {
-    background: linear-gradient(135deg, oklch(0.75 0.22 264), oklch(0.75 0.18 300));
+    background: linear-gradient(135deg, oklch(0.62 0.22 264), oklch(0.55 0.20 300));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -254,18 +254,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(1 0 0 / 0.15);
+  background: oklch(0.62 0.22 264 / 0.2);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(1 0 0 / 0.25);
+  background: oklch(0.62 0.22 264 / 0.4);
 }
 
 /* Selection */
 ::selection {
-  background: oklch(0.62 0.22 264 / 0.3);
-  color: oklch(0.98 0.005 264);
+  background: oklch(0.62 0.22 264 / 0.2);
+  color: oklch(0.62 0.22 264);
 }
 
 /* Animations */
@@ -286,8 +286,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px oklch(0.62 0.22 264 / 0.3); }
-  50% { box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.6); }
+  0%, 100% { box-shadow: 0 0 8px oklch(0.62 0.22 264 / 0.2); }
+  50% { box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.4); }
 }
 
 @keyframes scan {

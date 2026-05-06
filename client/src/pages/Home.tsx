@@ -1,11 +1,11 @@
 /**
  * Home.tsx - Main landing page
- * Design: Obsidian Precision - Dark tech SaaS (OpenRouter-style)
+ * Design: Light theme - Clean white background (OpenRouter-style)
  * Sections: Hero (prompt input), Stats, Features, How it works, CTA
  */
 
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
@@ -121,6 +121,7 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const [, navigate] = useLocation();
   const [prompt, setPrompt] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<DetectionResult | null>(null);
@@ -134,7 +135,16 @@ export default function Home() {
     setResult(null);
     try {
       const res = await mockDetect(prompt);
-      setResult(res);
+      
+      // Store analysis result and navigate to result page
+      const analysisData = {
+        prompt,
+        isMalicious: !res.safe,
+        riskPercentage: Math.round(res.score * 100),
+        timestamp: new Date().toISOString(),
+      };
+      sessionStorage.setItem('pg_analysis_result', JSON.stringify(analysisData));
+      navigate('/analysis-result');
     } catch {
       toast.error('분석 중 오류가 발생했습니다.');
     } finally {
