@@ -44,7 +44,7 @@ const THREAT_TYPES: ThreatType[] = [
     description: '사용자 입력을 통해 AI의 동작을 조작하려는 시도',
     riskPercentage: 92,
     icon: <Zap className="w-5 h-5" />,
-    color: 'oklch(0.65 0.22 25)',
+    color: '#EF4444',
   },
   {
     name: 'jailbreak',
@@ -52,7 +52,7 @@ const THREAT_TYPES: ThreatType[] = [
     description: 'AI의 안전 가이드라인을 우회하려는 시도',
     riskPercentage: 78,
     icon: <Lock className="w-5 h-5" />,
-    color: 'oklch(0.75 0.18 80)',
+    color: '#F59E0B',
   },
   {
     name: 'prompt_leakage',
@@ -60,7 +60,7 @@ const THREAT_TYPES: ThreatType[] = [
     description: '시스템 프롬프트나 숨겨진 정보를 추출하려는 시도',
     riskPercentage: 45,
     icon: <Eye className="w-5 h-5" />,
-    color: 'oklch(0.70 0.15 200)',
+    color: '#06B6D4',
   },
   {
     name: 'adversarial',
@@ -68,7 +68,7 @@ const THREAT_TYPES: ThreatType[] = [
     description: 'AI 모델의 취약점을 악용하려는 시도',
     riskPercentage: 62,
     icon: <Skull className="w-5 h-5" />,
-    color: 'oklch(0.75 0.18 80)',
+    color: '#F59E0B',
   },
   {
     name: 'harmful_content',
@@ -76,7 +76,7 @@ const THREAT_TYPES: ThreatType[] = [
     description: '불법적이거나 해로운 콘텐츠 생성을 유도하는 시도',
     riskPercentage: 88,
     icon: <Flame className="w-5 h-5" />,
-    color: 'oklch(0.65 0.22 25)',
+    color: '#EF4444',
   },
 ];
 
@@ -162,7 +162,7 @@ ${analysisData.isMalicious ? '이 프롬프트는 악성 의도를 포함하고 
       {/* Back button */}
       <button
         onClick={() => navigate('/analysis-result')}
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         분석 결과로 돌아가기
@@ -221,7 +221,7 @@ ${analysisData.isMalicious ? '이 프롬프트는 악성 의도를 포함하고 
                     <p className="text-xs text-muted-foreground mb-3">{threat.description}</p>
 
                     {/* Risk bar */}
-                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'oklch(0.92 0.004 286)' }}>
+                    <div className="h-1.5 rounded-full overflow-hidden" style={{ background: '#E5E7EB' }}>
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{ width: `${threat.riskPercentage}%`, background: threat.color }}
@@ -235,9 +235,9 @@ ${analysisData.isMalicious ? '이 프롬프트는 악성 의도를 포함하고 
         </div>
 
         {/* Summary */}
-        <div className="pg-card mb-8" style={{ background: 'oklch(0.62 0.22 264 / 0.05)', borderColor: 'oklch(0.62 0.22 264 / 0.2)' }}>
+        <div className="pg-card mb-8" style={{ background: '#E0E7FF', borderColor: '#C7D2FE' }}>
           <div className="flex items-start gap-3">
-            <AlertTriangle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'oklch(0.62 0.22 264)' }} />
+            <AlertTriangle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#4F46E5' }} />
             <div>
               <h3 className="font-semibold text-sm mb-1">분석 요약</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
@@ -275,7 +275,7 @@ ${analysisData.isMalicious ? '이 프롬프트는 악성 의도를 포함하고 
             보고서 다운로드
           </Button>
           <Link href="/" className="flex-1">
-            <Button className="w-full gap-2" style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+            <Button className="w-full gap-2" style={{ background: '#4F46E5', color: 'white' }}>
               새로운 분석
               <ArrowRight className="w-4 h-4" />
             </Button>

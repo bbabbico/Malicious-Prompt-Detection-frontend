@@ -1,6 +1,6 @@
-/* PromptGuard - Light Theme Design System
- * Theme: Clean white background, similar to OpenRouter
- * Colors: White bg, violet-blue accent, red danger, green safe
+/* PromptGuard - OpenRouter-style Light Theme
+ * Clean, minimal white background with vibrant accents
+ * Colors: Pure white bg, black text, blue primary, green accent
  * Fonts: Geist (headings/UI) + Inter (body)
  */
 
@@ -48,63 +48,63 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Light theme - Clean white background */
+/* OpenRouter-style Light Theme */
 :root {
   --radius: 0.5rem;
 
-  /* Primary: Violet-Blue (indigo) */
-  --primary: oklch(0.62 0.22 264);
-  --primary-foreground: oklch(1 0 0);
+  /* Primary: Vibrant Blue */
+  --primary: #4F46E5;
+  --primary-foreground: #FFFFFF;
 
-  /* Background: White */
-  --background: oklch(0.99 0.001 286);
-  --foreground: oklch(0.235 0.015 65);
+  /* Background: Pure White */
+  --background: #FFFFFF;
+  --foreground: #000000;
 
   /* Card: White */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.235 0.015 65);
+  --card: #FFFFFF;
+  --card-foreground: #000000;
 
   /* Popover */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.235 0.015 65);
+  --popover: #FFFFFF;
+  --popover-foreground: #000000;
 
-  /* Secondary */
-  --secondary: oklch(0.95 0.002 286);
-  --secondary-foreground: oklch(0.4 0.015 65);
+  /* Secondary: Light gray */
+  --secondary: #F5F5F5;
+  --secondary-foreground: #1F2937;
 
-  /* Muted */
-  --muted: oklch(0.92 0.004 286);
-  --muted-foreground: oklch(0.552 0.016 286);
+  /* Muted: Very light gray */
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
 
-  /* Accent */
-  --accent: oklch(0.62 0.22 264 / 0.08);
-  --accent-foreground: oklch(0.62 0.22 264);
+  /* Accent: Bright Green */
+  --accent: #10B981;
+  --accent-foreground: #FFFFFF;
 
-  /* Destructive: Red for threats */
-  --destructive: oklch(0.65 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
+  /* Destructive: Red */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
 
-  /* Border: Subtle */
-  --border: oklch(0.92 0.004 286);
-  --input: oklch(0.96 0.002 286);
-  --ring: oklch(0.62 0.22 264);
+  /* Border: Very light gray */
+  --border: #E5E7EB;
+  --input: #F9FAFB;
+  --ring: #4F46E5;
 
   /* Charts */
-  --chart-1: oklch(0.62 0.22 264);
-  --chart-2: oklch(0.65 0.22 25);
-  --chart-3: oklch(0.65 0.18 145);
-  --chart-4: oklch(0.70 0.15 200);
-  --chart-5: oklch(0.55 0.20 300);
+  --chart-1: #4F46E5;
+  --chart-2: #EF4444;
+  --chart-3: #10B981;
+  --chart-4: #F59E0B;
+  --chart-5: #8B5CF6;
 
   /* Sidebar */
-  --sidebar: oklch(0.99 0.001 286);
-  --sidebar-foreground: oklch(0.235 0.015 65);
-  --sidebar-primary: oklch(0.62 0.22 264);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.95 0.002 286);
-  --sidebar-accent-foreground: oklch(0.62 0.22 264);
-  --sidebar-border: oklch(0.92 0.004 286);
-  --sidebar-ring: oklch(0.62 0.22 264);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #4F46E5;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F3F4F6;
+  --sidebar-accent-foreground: #4F46E5;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #4F46E5;
 }
 
 @layer base {
@@ -129,6 +129,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Geist', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.02em;
+    font-weight: 700;
   }
   code, pre, .font-mono {
     font-family: 'Geist Mono', 'JetBrains Mono', 'Fira Code', monospace;
@@ -167,61 +168,63 @@
   /* PromptGuard custom components */
   .pg-card {
     @apply bg-card border border-border rounded-lg p-6 transition-all duration-200;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .pg-card:hover {
-    @apply border-primary/30;
-    box-shadow: 0 0 0 1px oklch(0.62 0.22 264 / 0.2), 0 4px 24px oklch(0.62 0.22 264 / 0.08);
+    @apply border-primary/40;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
   }
 
   .pg-badge-safe {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
-    background: oklch(0.65 0.18 145 / 0.15);
-    color: oklch(0.50 0.18 145);
-    border: 1px solid oklch(0.65 0.18 145 / 0.3);
+    background: #D1FAE5;
+    color: #047857;
+    border: 1px solid #A7F3D0;
   }
 
   .pg-badge-danger {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
-    background: oklch(0.65 0.22 25 / 0.15);
-    color: oklch(0.50 0.22 25);
-    border: 1px solid oklch(0.65 0.22 25 / 0.3);
+    background: #FEE2E2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
   }
 
   .pg-badge-warning {
     @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
-    background: oklch(0.75 0.18 80 / 0.15);
-    color: oklch(0.60 0.18 80);
-    border: 1px solid oklch(0.75 0.18 80 / 0.3);
+    background: #FEF3C7;
+    color: #D97706;
+    border: 1px solid #FCD34D;
   }
 
   .pg-code-block {
     @apply bg-secondary rounded-lg p-4 font-mono text-sm overflow-x-auto;
-    border: 1px solid oklch(0.92 0.004 286);
+    border: 1px solid #E5E7EB;
   }
 
   .pg-nav-link {
-    @apply text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 px-3 py-2 rounded-md hover:bg-accent;
+    @apply text-sm text-muted-foreground hover:text-foreground transition-colors duration-150 px-3 py-2 rounded-md hover:bg-secondary;
   }
 
   .pg-nav-link.active {
-    @apply text-foreground bg-accent;
+    @apply text-foreground bg-secondary font-medium;
+    color: #4F46E5;
   }
 
   /* Dot grid background pattern */
   .pg-dot-grid {
-    background-image: radial-gradient(circle, oklch(0.62 0.22 264 / 0.06) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(79, 70, 229, 0.04) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 
   /* Glow effect for primary elements */
   .pg-glow {
-    box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.2), 0 0 60px oklch(0.62 0.22 264 / 0.08);
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.15), 0 0 60px rgba(79, 70, 229, 0.08);
   }
 
   /* Gradient text */
   .pg-gradient-text {
-    background: linear-gradient(135deg, oklch(0.62 0.22 264), oklch(0.55 0.20 300));
+    background: linear-gradient(135deg, #4F46E5, #8B5CF6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -235,11 +238,16 @@
   .pg-card-accent::before {
     content: '';
     @apply absolute top-0 left-0 right-0 h-px opacity-0 transition-opacity duration-300;
-    background: linear-gradient(90deg, transparent, oklch(0.62 0.22 264), transparent);
+    background: linear-gradient(90deg, transparent, #4F46E5, transparent);
   }
 
   .pg-card-accent:hover::before {
     @apply opacity-100;
+  }
+
+  /* Light border accent for cards */
+  .pg-card-light-border {
+    border: 2px dashed #10B981;
   }
 }
 
@@ -254,18 +262,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: oklch(0.62 0.22 264 / 0.2);
+  background: #D1D5DB;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.62 0.22 264 / 0.4);
+  background: #9CA3AF;
 }
 
 /* Selection */
 ::selection {
-  background: oklch(0.62 0.22 264 / 0.2);
-  color: oklch(0.62 0.22 264);
+  background: rgba(79, 70, 229, 0.2);
+  color: #000000;
 }
 
 /* Animations */
@@ -286,8 +294,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px oklch(0.62 0.22 264 / 0.2); }
-  50% { box-shadow: 0 0 20px oklch(0.62 0.22 264 / 0.4); }
+  0%, 100% { box-shadow: 0 0 8px rgba(79, 70, 229, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); }
 }
 
 @keyframes scan {

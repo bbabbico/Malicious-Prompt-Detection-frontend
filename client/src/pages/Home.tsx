@@ -75,10 +75,10 @@ const EXAMPLE_PROMPTS = [
 ];
 
 const STATS = [
-  { value: '99.7%', label: '탐지 정확도', color: 'oklch(0.65 0.18 145)' },
-  { value: '<100ms', label: '평균 응답시간', color: 'oklch(0.62 0.22 264)' },
-  { value: '50M+', label: '월간 탐지 건수', color: 'oklch(0.70 0.15 200)' },
-  { value: '12+', label: '탐지 카테고리', color: 'oklch(0.75 0.18 80)' },
+  { value: '99.7%', label: '탐지 정확도', color: '#10B981' },
+  { value: '<100ms', label: '평균 응답시간', color: '#4F46E5' },
+  { value: '50M+', label: '월간 탐지 건수', color: '#8B5CF6' },
+  { value: '12+', label: '탐지 카테고리', color: '#F59E0B' },
 ];
 
 const FEATURES = [
@@ -86,37 +86,37 @@ const FEATURES = [
     icon: Zap,
     title: '실시간 탐지',
     desc: '100ms 미만의 초저지연으로 프롬프트를 실시간 분석합니다. 사용자 경험을 해치지 않으면서 보안을 강화하세요.',
-    color: 'oklch(0.62 0.22 264)',
+    color: '#4F46E5',
   },
   {
     icon: Layers,
     title: '다층 분석 엔진',
     desc: '프롬프트 인젝션, 탈옥 시도, 역할 조작, 유해 콘텐츠 등 12가지 이상의 위협 카테고리를 동시에 분석합니다.',
-    color: 'oklch(0.65 0.18 145)',
+    color: '#10B981',
   },
   {
     icon: Lock,
     title: '엔터프라이즈 보안',
     desc: '데이터는 분석 후 즉시 삭제됩니다. SOC2 Type II 인증, GDPR 준수, 온프레미스 배포 옵션을 제공합니다.',
-    color: 'oklch(0.65 0.22 25)',
+    color: '#EF4444',
   },
   {
     icon: Code2,
     title: 'OpenAI 호환 API',
     desc: '기존 OpenAI SDK와 완벽 호환됩니다. 단 몇 줄의 코드로 기존 AI 애플리케이션에 통합할 수 있습니다.',
-    color: 'oklch(0.70 0.15 200)',
+    color: '#8B5CF6',
   },
   {
     icon: Activity,
     title: '상세 분석 리포트',
     desc: '각 위협 카테고리별 신뢰도 점수와 함께 탐지 근거를 제공합니다. 감사 로그와 대시보드를 통해 추세를 파악하세요.',
-    color: 'oklch(0.75 0.18 80)',
+    color: '#F59E0B',
   },
   {
     icon: Globe,
     title: '다국어 지원',
     desc: '한국어, 영어, 일본어, 중국어 등 30개 이상의 언어로 작성된 악성 프롬프트를 탐지합니다.',
-    color: 'oklch(0.55 0.20 300)',
+    color: '#06B6D4',
   },
 ];
 
@@ -175,12 +175,12 @@ export default function Home() {
         <div className="container relative z-10 pt-24 pb-20">
           <div className="max-w-3xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/60 text-xs text-muted-foreground mb-6 animate-fade-in"
-              style={{ background: 'oklch(0.14 0.008 264 / 0.8)' }}>
-              <Sparkles className="w-3.5 h-3.5" style={{ color: 'oklch(0.62 0.22 264)' }} />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border text-xs text-muted-foreground mb-6 animate-fade-in"
+              style={{ background: '#F3F4F6' }}>
+              <Sparkles className="w-3.5 h-3.5" style={{ color: '#4F46E5' }} />
               <span>AI 기반 프롬프트 보안 API</span>
               <span className="px-1.5 py-0.5 rounded text-xs font-medium"
-                style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>
+                style={{ background: '#E0E7FF', color: '#4F46E5' }}>
                 v2.0
               </span>
             </div>
@@ -200,7 +200,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12 animate-fade-up delay-200">
               <Link href="/register">
                 <Button size="lg" className="gap-2 px-6 font-medium"
-                  style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+                  style={{ background: '#4F46E5', color: 'white' }}>
                   무료로 시작하기
                   <ChevronRight className="w-4 h-4" />
                 </Button>
@@ -217,10 +217,10 @@ export default function Home() {
           {/* Prompt Analyzer */}
           <div className="max-w-3xl mx-auto animate-fade-up delay-300">
             <div className="pg-card pg-card-accent rounded-xl p-0 overflow-hidden"
-              style={{ border: '1px solid oklch(1 0 0 / 10%)' }}>
+              style={{ border: '1px solid #E5E7EB' }}>
               {/* Analyzer header */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border/60"
-                style={{ background: 'oklch(0.12 0.008 264)' }}>
+              <div className="flex items-center justify-between px-4 py-3 border-b border-border"
+                style={{ background: '#F9FAFB' }}>
                 <div className="flex items-center gap-2">
                   <Eye className="w-4 h-4 text-muted-foreground" />
                   <span className="text-sm font-medium text-foreground">프롬프트 분석기</span>
@@ -240,12 +240,12 @@ export default function Home() {
                     <button
                       key={ex.label}
                       onClick={() => handleExamplePrompt(ex.text)}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs transition-colors border border-border/60 hover:border-border text-muted-foreground hover:text-foreground"
-                      style={{ background: 'oklch(0.14 0.008 264)' }}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs transition-colors border border-border hover:border-primary/40 text-muted-foreground hover:text-foreground"
+                      style={{ background: '#F3F4F6' }}
                     >
                       {ex.safe
                         ? <CheckCircle2 className="w-3 h-3 text-emerald-500" />
-                        : <AlertTriangle className="w-3 h-3 text-red-400" />}
+                        : <AlertTriangle className="w-3 h-3 text-red-500" />}
                       {ex.label}
                     </button>
                   ))}
@@ -268,7 +268,7 @@ export default function Home() {
                     onClick={handleAnalyze}
                     disabled={isAnalyzing || !prompt.trim()}
                     className="gap-2"
-                    style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}
+                    style={{ background: '#4F46E5', color: 'white' }}
                   >
                     {isAnalyzing ? (
                       <>

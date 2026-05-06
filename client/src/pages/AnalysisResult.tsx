@@ -59,10 +59,10 @@ export default function AnalysisResult() {
   };
 
   const getRiskColor = (percentage: number) => {
-    if (percentage >= 80) return 'oklch(0.65 0.22 25)'; // Red - Critical
-    if (percentage >= 60) return 'oklch(0.75 0.18 80)'; // Orange - High
-    if (percentage >= 40) return 'oklch(0.70 0.15 200)'; // Yellow - Medium
-    return 'oklch(0.65 0.18 145)'; // Green - Low
+    if (percentage >= 80) return '#EF4444'; // Red - Critical
+    if (percentage >= 60) return '#F59E0B'; // Orange - High
+    if (percentage >= 40) return '#06B6D4'; // Cyan - Medium
+    return '#10B981'; // Green - Low
   };
 
   const getRiskLabel = (percentage: number) => {
@@ -88,7 +88,7 @@ export default function AnalysisResult() {
       {/* Back button */}
       <button
         onClick={() => navigate('/')}
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
       >
         <ArrowLeft className="w-4 h-4" />
         분석 페이지로 돌아가기
@@ -109,8 +109,8 @@ export default function AnalysisResult() {
           {analysisData.isMalicious ? (
             <>
               <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: 'oklch(0.65 0.22 25 / 0.15)' }}>
-                <AlertCircle className="w-5 h-5" style={{ color: 'oklch(0.65 0.22 25)' }} />
+                style={{ background: '#FEE2E2' }}>
+                <AlertCircle className="w-5 h-5" style={{ color: '#EF4444' }} />
               </div>
               <div>
                 <p className="font-semibold text-foreground">악성 프롬프트 감지됨</p>
@@ -120,8 +120,8 @@ export default function AnalysisResult() {
           ) : (
             <>
               <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: 'oklch(0.65 0.18 145 / 0.15)' }}>
-                <CheckCircle2 className="w-5 h-5" style={{ color: 'oklch(0.65 0.18 145)' }} />
+                style={{ background: '#D1FAE5' }}>
+                <CheckCircle2 className="w-5 h-5" style={{ color: '#10B981' }} />
               </div>
               <div>
                 <p className="font-semibold text-foreground">안전한 프롬프트</p>
@@ -165,12 +165,12 @@ export default function AnalysisResult() {
                     {analysisData.riskPercentage}%
                   </span>
                   <span className="text-xs font-medium px-2 py-1 rounded-full"
-                    style={{ background: `${riskColor}15`, color: riskColor, border: `1px solid ${riskColor}40` }}>
+                    style={{ background: `${riskColor}20`, color: riskColor, border: `1px solid ${riskColor}40` }}>
                     {riskLabel}
                   </span>
                 </div>
               </div>
-              <div className="h-2 rounded-full overflow-hidden" style={{ background: 'oklch(0.92 0.004 286)' }}>
+              <div className="h-2 rounded-full overflow-hidden" style={{ background: '#E5E7EB' }}>
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{ width: `${analysisData.riskPercentage}%`, background: riskColor }}
@@ -179,7 +179,7 @@ export default function AnalysisResult() {
             </div>
 
             {/* Risk explanation */}
-            <div className="rounded-lg border p-4" style={{ background: `${riskColor}08`, borderColor: `${riskColor}30` }}>
+            <div className="rounded-lg border p-4" style={{ background: `${riskColor}15`, borderColor: riskColor }}>
               <div className="flex items-start gap-3">
                 <TrendingUp className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: riskColor }} />
                 <div className="text-sm">
@@ -199,10 +199,10 @@ export default function AnalysisResult() {
 
         {/* Advanced analysis button */}
         {analysisData.isMalicious && (
-          <div className="pg-card mb-8" style={{ background: 'oklch(0.62 0.22 264 / 0.05)', borderColor: 'oklch(0.62 0.22 264 / 0.2)' }}>
+          <div className="pg-card mb-8" style={{ background: '#E0E7FF', borderColor: '#C7D2FE' }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Shield className="w-5 h-5" style={{ color: 'oklch(0.62 0.22 264)' }} />
+                <Shield className="w-5 h-5" style={{ color: '#4F46E5' }} />
                 <div>
                   <p className="font-semibold text-sm">고도화 분석 이용 가능</p>
                   <p className="text-xs text-muted-foreground mt-0.5">
@@ -211,7 +211,7 @@ export default function AnalysisResult() {
                 </div>
               </div>
               <Link href="/advanced-analysis">
-                <Button className="gap-2" style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+                <Button className="gap-2" style={{ background: '#4F46E5', color: 'white' }}>
                   상세 분석 보기
                   <ArrowRight className="w-4 h-4" />
                 </Button>
@@ -226,7 +226,7 @@ export default function AnalysisResult() {
             새로운 분석
           </Button>
           <Link href="/docs" className="flex-1">
-            <Button className="w-full gap-2" style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+            <Button className="w-full gap-2" style={{ background: '#4F46E5', color: 'white' }}>
               API 문서
               <ArrowRight className="w-4 h-4" />
             </Button>
