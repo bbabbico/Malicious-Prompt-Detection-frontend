@@ -42,7 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-7 h-7 rounded-md flex items-center justify-center"
-              style={{ background: 'linear-gradient(135deg, oklch(0.62 0.22 264), oklch(0.55 0.20 300))' }}>
+              style={{ background: 'linear-gradient(135deg, #4F46E5, #8B5CF6)' }}>
               <Shield className="w-4 h-4 text-white" />
             </div>
             <span className="font-semibold text-sm tracking-tight text-foreground group-hover:text-primary transition-colors">
@@ -69,7 +69,7 @@ export default function Navbar() {
                   <button className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-accent transition-colors">
                     <Avatar className="w-6 h-6">
                       <AvatarFallback className="text-xs font-medium"
-                        style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>
+                        style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>
                         {user.name.charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
@@ -80,7 +80,7 @@ export default function Navbar() {
                   <div className="px-3 py-2">
                     <p className="text-xs text-muted-foreground">{user.email}</p>
                     <span className="inline-flex items-center mt-1 px-1.5 py-0.5 rounded text-xs font-medium"
-                      style={{ background: 'oklch(0.62 0.22 264 / 0.15)', color: 'oklch(0.75 0.18 264)' }}>
+                      style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>
                       {user.plan.toUpperCase()}
                     </span>
                   </div>
@@ -103,7 +103,7 @@ export default function Navbar() {
                 </Link>
                 <Link href="/register">
                   <Button size="sm" className="gap-1.5"
-                    style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+                    style={{ background: '#4F46E5', color: 'white' }}>
                     시작하기
                     <ChevronRight className="w-3.5 h-3.5" />
                   </Button>
@@ -145,7 +145,7 @@ export default function Navbar() {
                     <Button variant="ghost" className="w-full justify-start">로그인</Button>
                   </Link>
                   <Link href="/register" onClick={() => setMobileOpen(false)}>
-                    <Button className="w-full" style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+                    <Button className="w-full" style={{ background: '#4F46E5', color: 'white' }}>
                       시작하기
                     </Button>
                   </Link>

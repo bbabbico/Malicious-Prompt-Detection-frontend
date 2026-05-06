@@ -93,16 +93,18 @@ function CodeBlock({ code, language = 'bash' }: { code: string; language?: strin
 
 function MethodBadge({ method }: { method: string }) {
   const colors: Record<string, string> = {
-    GET: 'oklch(0.65 0.18 145)',
-    POST: 'oklch(0.62 0.22 264)',
-    DELETE: 'oklch(0.65 0.22 25)',
-    PUT: 'oklch(0.75 0.18 80)',
+    GET: '#10B981',
+    POST: '#4F46E5',
+    DELETE: '#EF4444',
+    PUT: '#F59E0B',
   };
   return (
     <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold"
-      style={{ background: `${colors[method] || 'oklch(0.62 0.22 264)'} / 0.15)`.replace('/ 0.15)', '/ 0.15)'),
-        color: colors[method] || 'oklch(0.62 0.22 264)',
-        border: `1px solid ${colors[method] || 'oklch(0.62 0.22 264)'} / 0.3)`.replace('/ 0.3)', '/ 0.3)') }}>
+      style={{ 
+        background: `${colors[method] || '#4F46E5'}20`,
+        color: colors[method] || '#4F46E5',
+        border: `1px solid ${colors[method] || '#4F46E5'}40` 
+      }}>
       {method}
     </span>
   );
@@ -120,15 +122,15 @@ const SECTIONS: Record<string, React.ReactNode> = {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {[
-          { icon: Zap, title: '초저지연', desc: '평균 응답시간 < 100ms', color: 'oklch(0.62 0.22 264)' },
-          { icon: Shield, title: '높은 정확도', desc: '99.7% 탐지 정확도', color: 'oklch(0.65 0.18 145)' },
-          { icon: Layers, title: '다층 분석', desc: '12+ 위협 카테고리', color: 'oklch(0.75 0.18 80)' },
+          { icon: Zap, title: '초저지연', desc: '평균 응답시간 < 100ms', color: '#4F46E5' },
+          { icon: Shield, title: '높은 정확도', desc: '99.7% 탐지 정확도', color: '#10B981' },
+          { icon: Layers, title: '다층 분석', desc: '12+ 위협 카테고리', color: '#F59E0B' },
         ].map(item => {
           const Icon = item.icon;
           return (
             <div key={item.title} className="pg-card">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3"
-                style={{ background: `${item.color} / 0.15)`.replace('/ 0.15)', '/ 0.15)') }}>
+                style={{ background: `${item.color}20` }}>
                 <Icon className="w-4 h-4" style={{ color: item.color }} />
               </div>
               <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
@@ -147,10 +149,10 @@ const SECTIONS: Record<string, React.ReactNode> = {
         함께 JSON 본문을 사용합니다.
       </p>
 
-      <div className="rounded-lg border border-border/60 p-4 mb-6"
-        style={{ background: 'oklch(0.62 0.22 264 / 0.05)' }}>
+      <div className="rounded-lg border border-indigo-100 p-4 mb-6"
+        style={{ background: 'rgba(79, 70, 229, 0.05)' }}>
         <div className="flex items-start gap-3">
-          <Info className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'oklch(0.62 0.22 264)' }} />
+          <Info className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#4F46E5' }} />
           <div>
             <p className="text-sm font-medium mb-1">OpenAI SDK 호환</p>
             <p className="text-xs text-muted-foreground">
@@ -172,7 +174,7 @@ const SECTIONS: Record<string, React.ReactNode> = {
         <div>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>1</div>
+              style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>1</div>
             <h2 className="text-lg font-semibold">API 키 발급</h2>
           </div>
           <p className="text-sm text-muted-foreground mb-3">
@@ -186,7 +188,7 @@ const SECTIONS: Record<string, React.ReactNode> = {
         <div>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>2</div>
+              style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>2</div>
             <h2 className="text-lg font-semibold">SDK 설치</h2>
           </div>
           <CodeBlock code={`pip install promptguard\n# 또는\nnpm install @promptguard/sdk`} language="bash" />
@@ -196,7 +198,7 @@ const SECTIONS: Record<string, React.ReactNode> = {
         <div>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>3</div>
+              style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>3</div>
             <h2 className="text-lg font-semibold">첫 번째 탐지 요청</h2>
           </div>
           <CodeBlock code={`import promptguard
@@ -217,7 +219,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
         <div>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>4</div>
+              style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>4</div>
             <h2 className="text-lg font-semibold">응답 처리</h2>
           </div>
           <CodeBlock code={`{
@@ -267,9 +269,9 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
   -d '{"prompt": "Hello, how are you?"}'`} language="bash" />
 
       <div className="rounded-lg border p-4 mt-6"
-        style={{ background: 'oklch(0.65 0.22 25 / 0.05)', borderColor: 'oklch(0.65 0.22 25 / 0.3)' }}>
+        style={{ background: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
         <div className="flex items-start gap-3">
-          <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: 'oklch(0.75 0.22 25)' }} />
+          <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#EF4444' }} />
           <div>
             <p className="text-sm font-medium mb-1">보안 주의사항</p>
             <p className="text-xs text-muted-foreground">
@@ -286,7 +288,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
     <div>
       <div className="flex items-center gap-3 mb-2">
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold"
-          style={{ background: 'oklch(0.62 0.22 264 / 0.15)', color: 'oklch(0.75 0.18 264)', border: '1px solid oklch(0.62 0.22 264 / 0.3)' }}>
+          style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5', border: '1px solid rgba(79, 70, 229, 0.2)' }}>
           POST
         </span>
         <code className="text-lg font-mono font-semibold">/v2/detect</code>
@@ -298,7 +300,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
       <div className="border border-border/60 rounded-lg overflow-hidden mb-6">
         <table className="w-full text-sm">
           <thead>
-            <tr style={{ background: 'oklch(0.14 0.008 264)' }}>
+            <tr style={{ background: '#F9FAFB' }}>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">파라미터</th>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">타입</th>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">필수</th>
@@ -368,7 +370,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
     <div>
       <div className="flex items-center gap-3 mb-2">
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold"
-          style={{ background: 'oklch(0.62 0.22 264 / 0.15)', color: 'oklch(0.75 0.18 264)', border: '1px solid oklch(0.62 0.22 264 / 0.3)' }}>
+          style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5', border: '1px solid rgba(79, 70, 229, 0.2)' }}>
           POST
         </span>
         <code className="text-lg font-mono font-semibold">/v2/detect/batch</code>
@@ -394,7 +396,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
     <div>
       <div className="flex items-center gap-3 mb-2">
         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold"
-          style={{ background: 'oklch(0.65 0.18 145 / 0.15)', color: 'oklch(0.75 0.18 145)', border: '1px solid oklch(0.65 0.18 145 / 0.3)' }}>
+          style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
           GET
         </span>
         <code className="text-lg font-mono font-semibold">/v2/models</code>
@@ -512,7 +514,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
       <div className="border border-border/60 rounded-lg overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr style={{ background: 'oklch(0.14 0.008 264)' }}>
+            <tr style={{ background: '#F9FAFB' }}>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">HTTP 상태</th>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">오류 코드</th>
               <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">설명</th>
@@ -566,7 +568,7 @@ print(f"탐지된 위협: {result.detected_categories}")`} language="python" />
               </div>
             </div>
             <code className="text-xs text-muted-foreground font-mono block p-2 rounded"
-              style={{ background: 'oklch(0.12 0.008 264)' }}>
+              style={{ background: '#F3F4F6' }}>
               {sdk.install}
             </code>
           </div>
@@ -629,8 +631,8 @@ export default function Docs() {
   return (
     <div className="flex min-h-[calc(100vh-3.5rem)]">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-border/60 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto"
-        style={{ background: 'oklch(0.11 0.008 264)' }}>
+      <aside className="hidden lg:flex flex-col w-60 flex-shrink-0 border-r border-border sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto"
+        style={{ background: '#F9FAFB' }}>
         <div className="p-4">
           <div className="mb-4">
             <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-2 mb-2">

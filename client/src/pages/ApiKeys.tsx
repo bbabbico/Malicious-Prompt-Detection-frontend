@@ -236,7 +236,7 @@ export default function ApiKeys() {
         <Button
           onClick={() => setShowCreateDialog(true)}
           className="gap-2 flex-shrink-0"
-          style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}
+          style={{ background: '#4F46E5', color: 'white' }}
         >
           <Plus className="w-4 h-4" />
           새 API 키 생성
@@ -260,14 +260,14 @@ export default function ApiKeys() {
       <div className="pg-card mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center"
-            style={{ background: 'oklch(0.62 0.22 264 / 0.15)' }}>
-            <Shield className="w-5 h-5" style={{ color: 'oklch(0.75 0.18 264)' }} />
+            style={{ background: 'rgba(79, 70, 229, 0.1)' }}>
+            <Shield className="w-5 h-5" style={{ color: '#4F46E5' }} />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <span className="font-medium text-sm">{user?.plan?.toUpperCase()} 플랜</span>
               <span className="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium"
-                style={{ background: 'oklch(0.62 0.22 264 / 0.15)', color: 'oklch(0.75 0.18 264)' }}>
+                style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4F46E5' }}>
                 {user?.plan === 'pro' ? '월 100,000 요청' : '월 10,000 요청'}
               </span>
             </div>
@@ -293,7 +293,7 @@ export default function ApiKeys() {
             <Key className="w-10 h-10 text-muted-foreground/50 mx-auto mb-3" />
             <p className="text-sm text-muted-foreground mb-4">아직 API 키가 없습니다.</p>
             <Button onClick={() => setShowCreateDialog(true)} size="sm"
-              style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+              style={{ background: '#4F46E5', color: 'white' }}>
               <Plus className="w-4 h-4 mr-1.5" />
               첫 번째 API 키 생성
             </Button>
@@ -345,14 +345,14 @@ export default function ApiKeys() {
                       </span>
                     </div>
                     <div className="h-1.5 rounded-full overflow-hidden"
-                      style={{ background: 'oklch(1 0 0 / 0.08)' }}>
+                      style={{ background: '#F3F4F6' }}>
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{
                           width: `${getUsagePercent(apiKey.usageCount, apiKey.monthlyLimit)}%`,
                           background: getUsagePercent(apiKey.usageCount, apiKey.monthlyLimit) > 80
-                            ? 'oklch(0.65 0.22 25)'
-                            : 'oklch(0.62 0.22 264)',
+                            ? '#EF4444'
+                            : '#4F46E5',
                         }}
                       />
                     </div>
@@ -418,9 +418,9 @@ export default function ApiKeys() {
 
       {/* Security tips */}
       <div className="mt-8 pg-card"
-        style={{ borderColor: 'oklch(0.62 0.22 264 / 0.2)', background: 'oklch(0.62 0.22 264 / 0.05)' }}>
+        style={{ borderColor: 'rgba(79, 70, 229, 0.2)', background: 'rgba(79, 70, 229, 0.05)' }}>
         <h3 className="font-semibold text-sm mb-3 flex items-center gap-2">
-          <Shield className="w-4 h-4" style={{ color: 'oklch(0.62 0.22 264)' }} />
+          <Shield className="w-4 h-4" style={{ color: '#4F46E5' }} />
           보안 권장사항
         </h3>
         <ul className="space-y-2">
@@ -443,7 +443,7 @@ export default function ApiKeys() {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <Key className="w-4 h-4" style={{ color: 'oklch(0.62 0.22 264)' }} />
+              <Key className="w-4 h-4" style={{ color: '#4F46E5' }} />
               새 API 키 생성
             </DialogTitle>
             <DialogDescription>
@@ -461,8 +461,8 @@ export default function ApiKeys() {
                 onKeyDown={e => e.key === 'Enter' && handleCreateKey()}
               />
             </div>
-            <div className="rounded-lg border border-border/60 p-3"
-              style={{ background: 'oklch(0.12 0.008 264)' }}>
+            <div className="rounded-lg border border-border p-3"
+              style={{ background: '#F9FAFB' }}>
               <p className="text-xs text-muted-foreground">
                 생성된 API 키는 한 번만 표시됩니다. 안전한 곳에 복사해두세요.
               </p>
@@ -471,7 +471,7 @@ export default function ApiKeys() {
           <DialogFooter>
             <Button variant="ghost" onClick={() => setShowCreateDialog(false)}>취소</Button>
             <Button onClick={handleCreateKey} disabled={isCreating}
-              style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+              style={{ background: '#4F46E5', color: 'white' }}>
               {isCreating ? (
                 <><RefreshCw className="w-4 h-4 mr-1.5 animate-spin" />생성 중...</>
               ) : (
@@ -496,7 +496,7 @@ export default function ApiKeys() {
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="rounded-lg border p-3 flex items-center gap-2"
-              style={{ background: 'oklch(0.12 0.008 264)', borderColor: 'oklch(0.65 0.18 145 / 0.3)' }}>
+              style={{ background: '#F9FAFB', borderColor: '#A7F3D0' }}>
               <code className="text-xs font-mono text-foreground flex-1 break-all">{newKeyValue}</code>
               <button
                 onClick={() => handleCopyKey(newKeyValue)}
@@ -506,7 +506,7 @@ export default function ApiKeys() {
               </button>
             </div>
             <div className="flex items-start gap-2 rounded-lg border border-yellow-500/30 p-3"
-              style={{ background: 'oklch(0.75 0.18 80 / 0.05)' }}>
+              style={{ background: 'rgba(245, 158, 11, 0.05)' }}>
               <AlertTriangle className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
               <p className="text-xs text-muted-foreground">
                 이 키는 다시 표시되지 않습니다. 지금 바로 안전한 곳에 저장하세요.
@@ -515,7 +515,7 @@ export default function ApiKeys() {
           </div>
           <DialogFooter>
             <Button onClick={() => { handleCopyKey(newKeyValue); setShowNewKeyDialog(false); }}
-              style={{ background: 'oklch(0.62 0.22 264)', color: 'white' }}>
+              style={{ background: '#4F46E5', color: 'white' }}>
               <Copy className="w-4 h-4 mr-1.5" />
               복사하고 닫기
             </Button>

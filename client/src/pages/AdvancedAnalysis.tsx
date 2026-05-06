@@ -261,7 +261,7 @@ ${analysisData.isMalicious ? '이 프롬프트는 악성 의도를 포함하고 
               'PromptGuard API를 모든 사용자 입력에 적용하세요.',
             ].map((rec, i) => (
               <li key={i} className="flex items-start gap-2.5 text-sm">
-                <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: 'oklch(0.62 0.22 264)' }}></span>
+                <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: '#4F46E5' }}></span>
                 {rec}
               </li>
             ))}

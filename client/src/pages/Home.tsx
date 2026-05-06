@@ -23,8 +23,19 @@ import {
   Eye,
   ArrowRight,
   Sparkles,
+  Check,
+  ChevronDown,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 // Mock detection result type
 interface DetectionResult {
@@ -125,6 +136,8 @@ export default function Home() {
   const [prompt, setPrompt] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<DetectionResult | null>(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [embeddingModel, setEmbeddingModel] = useState('intfloat/multilingual-e5-small');
 
   const handleAnalyze = async () => {
     if (!prompt.trim()) {
@@ -135,10 +148,11 @@ export default function Home() {
     setResult(null);
     try {
       const res = await mockDetect(prompt);
-      
+
       // Store analysis result and navigate to result page
       const analysisData = {
         prompt,
+        model: embeddingModel,
         isMalicious: !res.safe,
         riskPercentage: Math.round(res.score * 100),
         timestamp: new Date().toISOString(),
@@ -187,13 +201,11 @@ export default function Home() {
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5 animate-fade-up">
-              AI 프롬프트 위협을{' '}
-              <span className="pg-gradient-text">실시간으로 차단</span>
+              AI 악성 프롬프트 탐지
             </h1>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto animate-fade-up delay-100">
-              단일 API로 프롬프트 인젝션, 탈옥 시도, 역할 조작 등 모든 AI 보안 위협을 탐지하세요.
-              OpenAI SDK와 완벽 호환되며 100ms 미만으로 응답합니다.
+              OPEN API 서비스와 결합하여 악성 프롬프트를 탐지합니다.
             </p>
 
             {/* CTA buttons */}
@@ -259,15 +271,46 @@ export default function Home() {
                   className="min-h-[120px] resize-none font-mono text-sm border-border/60 focus:border-primary/50 bg-transparent"
                 />
 
-                {/* Analyze button */}
-                <div className="flex items-center justify-between mt-3">
-                  <span className="text-xs text-muted-foreground">
-                    {prompt.length} 자
-                  </span>
+                {/* Analyze button & Controls */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-4 pt-4 border-t border-border/40">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <span className="text-xs font-medium text-muted-foreground bg-muted/50 px-2 py-1 rounded">
+                      {prompt.length.toLocaleString()} 자
+                    </span>
+
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        id="terms"
+                        checked={agreedToTerms}
+                        onCheckedChange={(val) => setAgreedToTerms(!!val)}
+                        className="border-muted-foreground/30 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                      />
+                      <Label
+                        htmlFor="terms"
+                        className="text-xs font-normal cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        사용자 입력 프롬프트 학습 약관 동의
+                      </Label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Label className="text-xs font-normal text-muted-foreground whitespace-nowrap">임베딩 모델 선택</Label>
+                      <Select value={embeddingModel} onValueChange={setEmbeddingModel}>
+                        <SelectTrigger className="h-8 text-[11px] w-[180px] bg-background border-border/60">
+                          <SelectValue placeholder="모델 선택" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="intfloat/multilingual-e5-small" className="text-xs">multilingual-e5-small</SelectItem>
+                          <SelectItem value="intfloat/multilingual-e5-large" className="text-xs">multilingual-e5-large</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
                   <Button
                     onClick={handleAnalyze}
-                    disabled={isAnalyzing || !prompt.trim()}
-                    className="gap-2"
+                    disabled={isAnalyzing || !prompt.trim() || !agreedToTerms}
+                    className="gap-2 min-w-[120px] shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
                     style={{ background: '#4F46E5', color: 'white' }}
                   >
                     {isAnalyzing ? (
