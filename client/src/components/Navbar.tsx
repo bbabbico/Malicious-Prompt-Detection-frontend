@@ -35,8 +35,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60"
-      style={{ background: 'oklch(0.10 0.008 264 / 0.85)', backdropFilter: 'blur(12px)' }}>
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border"
+      style={{ background: 'rgba(255, 255, 255, 0.92)', backdropFilter: 'blur(12px)' }}>
       <div className="container">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}

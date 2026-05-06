@@ -116,49 +116,41 @@ export default function Register() {
     <div className="min-h-[calc(100vh-3.5rem)] flex">
       {/* Left panel - Visual */}
       <div className="hidden lg:flex flex-col justify-center flex-1 relative overflow-hidden"
-        style={{ background: 'oklch(0.12 0.008 264)' }}>
-        <div className="absolute inset-0">
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663632291615/cqvQC3gdqsmXLbLwXJohLF/detection-visual-Gm3UKjPbns47q2L8GrcTJ9.webp"
-            alt=""
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0"
-            style={{ background: 'linear-gradient(135deg, oklch(0.12 0.008 264 / 0.9), oklch(0.10 0.008 264 / 0.6))' }} />
-        </div>
+        style={{ background: 'linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 50%, #EFF6FF 100%)' }}>
+        <div className="absolute inset-0 pg-dot-grid opacity-60" />
 
         <div className="relative z-10 px-12 py-12">
           <div className="max-w-sm">
-            <h2 className="text-2xl font-bold tracking-tight text-white mb-3">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-3">
               무료로 시작하세요
             </h2>
-            <p className="text-sm text-white/60 leading-relaxed mb-8">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-8">
               신용카드 없이 즉시 시작할 수 있습니다. 월 10,000건의 탐지를 무료로 이용하세요.
             </p>
 
             {/* Free plan features */}
             <div className="space-y-2.5 mb-8">
-              <p className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-3">무료 플랜 포함</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">무료 플랜 포함</p>
               {PLAN_FEATURES.free.map(feature => (
                 <div key={feature} className="flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-emerald-500" />
-                  <span className="text-sm text-white/70">{feature}</span>
+                  <span className="text-sm text-foreground">{feature}</span>
                 </div>
               ))}
             </div>
 
             {/* Pro plan teaser */}
             <div className="rounded-xl border p-4"
-              style={{ borderColor: 'oklch(0.62 0.22 264 / 0.3)', background: 'oklch(0.62 0.22 264 / 0.08)' }}>
+              style={{ borderColor: '#C7D2FE', background: 'rgba(255,255,255,0.8)' }}>
               <div className="flex items-center gap-2 mb-3">
-                <Zap className="w-4 h-4" style={{ color: 'oklch(0.75 0.18 264)' }} />
-                <span className="text-sm font-semibold text-white">Pro 플랜으로 업그레이드</span>
+                <Zap className="w-4 h-4" style={{ color: '#4F46E5' }} />
+                <span className="text-sm font-semibold text-foreground">Pro 플랜으로 업그레이드</span>
               </div>
               <div className="space-y-1.5">
                 {PLAN_FEATURES.pro.slice(0, 3).map(feature => (
                   <div key={feature} className="flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full" style={{ background: 'oklch(0.62 0.22 264)' }}></div>
-                    <span className="text-xs text-white/50">{feature}</span>
+                    <div className="w-1 h-1 rounded-full" style={{ background: '#4F46E5' }}></div>
+                    <span className="text-xs text-muted-foreground">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -244,7 +236,7 @@ export default function Register() {
               {/* Password strength */}
               {strength && (
                 <div className="space-y-1">
-                  <div className="h-1 rounded-full overflow-hidden" style={{ background: 'oklch(1 0 0 / 0.08)' }}>
+                  <div className="h-1 rounded-full overflow-hidden" style={{ background: '#E5E7EB' }}>
                     <div className="h-full rounded-full transition-all duration-300"
                       style={{ width: strength.width, background: strength.color }} />
                   </div>

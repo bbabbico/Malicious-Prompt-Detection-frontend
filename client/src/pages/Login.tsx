@@ -86,8 +86,8 @@ export default function Login() {
           <button
             onClick={handleDemoLogin}
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border/60 text-sm text-muted-foreground hover:text-foreground hover:border-border transition-all mb-6"
-            style={{ background: 'oklch(0.14 0.008 264)' }}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all mb-6"
+            style={{ background: '#F9FAFB' }}
           >
             <span className="w-4 h-4 rounded-full flex items-center justify-center text-xs font-bold"
               style={{ background: 'oklch(0.62 0.22 264 / 0.2)', color: 'oklch(0.75 0.18 264)' }}>
@@ -181,9 +181,9 @@ export default function Login() {
           </p>
 
           {/* JWT info */}
-          <div className="mt-8 p-3 rounded-lg border border-border/60 text-xs text-muted-foreground"
-            style={{ background: 'oklch(0.12 0.008 264)' }}>
-            <p className="font-medium text-foreground/60 mb-1">보안 안내</p>
+          <div className="mt-8 p-3 rounded-lg border border-border text-xs text-muted-foreground"
+            style={{ background: '#F9FAFB' }}>
+            <p className="font-medium text-foreground/80 mb-1">보안 안내</p>
             <p>로그인 시 JWT 토큰이 발급되며 브라우저에 안전하게 저장됩니다. 7일 후 자동 만료됩니다.</p>
           </div>
         </div>
@@ -191,41 +191,33 @@ export default function Login() {
 
       {/* Right panel - Visual */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden"
-        style={{ background: 'oklch(0.12 0.008 264)' }}>
-        <div className="absolute inset-0">
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663632291615/cqvQC3gdqsmXLbLwXJohLF/hero-bg-Q5DReshbeUxTbtiw9fqjf9.webp"
-            alt=""
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0"
-            style={{ background: 'linear-gradient(135deg, oklch(0.12 0.008 264 / 0.8), oklch(0.10 0.008 264 / 0.4))' }} />
-        </div>
+        style={{ background: 'linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 50%, #EFF6FF 100%)' }}>
+        <div className="absolute inset-0 pg-dot-grid opacity-60" />
 
         <div className="relative z-10 flex flex-col justify-center px-12 py-12">
           <div className="max-w-sm">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/60 text-xs text-muted-foreground mb-6"
-              style={{ background: 'oklch(0.14 0.008 264 / 0.8)' }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 text-xs text-indigo-700 mb-6"
+              style={{ background: 'rgba(255,255,255,0.8)' }}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               실시간 보호 활성화
             </div>
 
-            <h2 className="text-2xl font-bold tracking-tight text-white mb-4">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mb-4">
               AI 애플리케이션을<br />안전하게 보호하세요
             </h2>
-            <p className="text-sm text-white/60 leading-relaxed mb-8">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-8">
               PromptGuard는 프롬프트 인젝션, 탈옥 시도, 역할 조작 등 모든 AI 보안 위협을 실시간으로 차단합니다.
             </p>
 
             {/* Stats */}
             <div className="space-y-3">
               {[
-                { label: '월간 탐지 건수', value: '50M+', color: 'oklch(0.62 0.22 264)' },
-                { label: '탐지 정확도', value: '99.7%', color: 'oklch(0.65 0.18 145)' },
-                { label: '평균 응답시간', value: '<100ms', color: 'oklch(0.70 0.15 200)' },
+                { label: '월간 탐지 건수', value: '50M+', color: '#4F46E5' },
+                { label: '탐지 정확도', value: '99.7%', color: '#10B981' },
+                { label: '평균 응답시간', value: '<100ms', color: '#0EA5E9' },
               ].map(stat => (
-                <div key={stat.label} className="flex items-center justify-between py-2 border-b border-white/10">
-                  <span className="text-sm text-white/60">{stat.label}</span>
+                <div key={stat.label} className="flex items-center justify-between py-2 border-b border-indigo-100">
+                  <span className="text-sm text-muted-foreground">{stat.label}</span>
                   <span className="text-sm font-semibold" style={{ color: stat.color }}>{stat.value}</span>
                 </div>
               ))}

@@ -169,7 +169,7 @@ export default function Home() {
             className="w-full h-full object-cover opacity-25"
           />
           <div className="absolute inset-0"
-            style={{ background: 'linear-gradient(to bottom, transparent 40%, oklch(0.10 0.008 264) 100%)' }} />
+            style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(255,255,255,1) 100%)' }} />
         </div>
 
         <div className="container relative z-10 pt-24 pb-20">
@@ -288,7 +288,7 @@ export default function Home() {
               {/* Result */}
               {result && (
                 <div className="border-t border-border/60 p-4 animate-fade-up"
-                  style={{ background: 'oklch(0.11 0.008 264)' }}>
+                  style={{ background: '#F8FAFF' }}>
                   <div className="flex items-start gap-4">
                     {/* Score */}
                     <div className="flex-shrink-0 text-center">
@@ -327,9 +327,9 @@ export default function Home() {
                       <div className="grid grid-cols-2 gap-1.5">
                         {result.categories.map(cat => (
                           <div key={cat.name} className="flex items-center justify-between px-2.5 py-1.5 rounded-md text-xs"
-                            style={{ background: 'oklch(0.14 0.008 264)' }}>
+                            style={{ background: '#F3F4F6' }}>
                             <span className="text-muted-foreground truncate mr-2">{cat.name}</span>
-                            <span className={cat.detected ? 'text-red-400 font-medium' : 'text-emerald-500'}>
+                            <span className={cat.detected ? 'text-red-600 font-medium' : 'text-emerald-600'}>
                               {cat.detected ? `${Math.round(cat.confidence * 100)}%` : '—'}
                             </span>
                           </div>
@@ -346,7 +346,7 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="border-y border-border/60 py-12"
-        style={{ background: 'oklch(0.12 0.008 264 / 0.5)' }}>
+        style={{ background: '#F9FAFB' }}>
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {STATS.map((stat, i) => (
@@ -394,7 +394,7 @@ export default function Home() {
 
       {/* How it works / Detection visual */}
       <section className="py-20 border-t border-border/60"
-        style={{ background: 'oklch(0.11 0.008 264 / 0.5)' }}>
+        style={{ background: '#F9FAFB' }}>
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -415,7 +415,7 @@ export default function Home() {
                 ].map(item => (
                   <div key={item.step} className="flex gap-4">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                      style={{ background: 'oklch(0.62 0.22 264 / 0.15)', color: 'oklch(0.75 0.18 264)' }}>
+                      style={{ background: '#E0E7FF', color: '#4F46E5' }}>
                       {item.step}
                     </div>
                     <div>
@@ -434,7 +434,7 @@ export default function Home() {
                 className="w-full rounded-xl border border-border/60"
               />
               <div className="absolute inset-0 rounded-xl"
-                style={{ background: 'linear-gradient(to top, oklch(0.11 0.008 264 / 0.3), transparent)' }} />
+                style={{ background: 'linear-gradient(to top, rgba(249,250,251,0.4), transparent)' }} />
             </div>
           </div>
         </div>
@@ -465,41 +465,41 @@ export default function Home() {
               <pre className="text-sm leading-relaxed overflow-x-auto">
                 <code>
                   <span className="text-muted-foreground"># PromptGuard 통합 예시</span>{'\n'}
-                  <span style={{ color: 'oklch(0.75 0.18 264)' }}>import</span>
+                  <span style={{ color: '#4F46E5' }}>import</span>
                   <span className="text-foreground"> promptguard</span>{'\n\n'}
                   <span className="text-muted-foreground"># API 키 설정</span>{'\n'}
                   <span className="text-foreground">pg </span>
-                  <span style={{ color: 'oklch(0.75 0.22 25)' }}>=</span>
+                  <span style={{ color: '#B91C1C' }}>=</span>
                   <span className="text-foreground"> promptguard.Client(api_key</span>
-                  <span style={{ color: 'oklch(0.75 0.22 25)' }}>=</span>
-                  <span style={{ color: 'oklch(0.75 0.18 145)' }}>"pg-sk-..."</span>
+                  <span style={{ color: '#B91C1C' }}>=</span>
+                  <span style={{ color: '#059669' }}>"pg-sk-..."</span>
                   <span className="text-foreground">)</span>{'\n\n'}
                   <span className="text-muted-foreground"># 프롬프트 검사</span>{'\n'}
                   <span className="text-foreground">result </span>
-                  <span style={{ color: 'oklch(0.75 0.22 25)' }}>=</span>
+                  <span style={{ color: '#B91C1C' }}>=</span>
                   <span className="text-foreground"> pg.detect(</span>{'\n'}
                   <span className="text-foreground">    prompt</span>
-                  <span style={{ color: 'oklch(0.75 0.22 25)' }}>=</span>
+                  <span style={{ color: '#B91C1C' }}>=</span>
                   <span className="text-foreground">user_input,</span>{'\n'}
                   <span className="text-foreground">    categories</span>
-                  <span style={{ color: 'oklch(0.75 0.22 25)' }}>=</span>
+                  <span style={{ color: '#B91C1C' }}>=</span>
                   <span className="text-foreground">[</span>
-                  <span style={{ color: 'oklch(0.75 0.18 145)' }}>"injection"</span>
+                  <span style={{ color: '#059669' }}>"injection"</span>
                   <span className="text-foreground">, </span>
-                  <span style={{ color: 'oklch(0.75 0.18 145)' }}>"jailbreak"</span>
+                  <span style={{ color: '#059669' }}>"jailbreak"</span>
                   <span className="text-foreground">]</span>{'\n'}
                   <span className="text-foreground">)</span>{'\n\n'}
-                  <span style={{ color: 'oklch(0.75 0.18 264)' }}>if</span>
+                  <span style={{ color: '#4F46E5' }}>if</span>
                   <span className="text-foreground"> result.is_safe:</span>{'\n'}
                   <span className="text-foreground">    </span>
                   <span className="text-muted-foreground"># 안전한 프롬프트 처리</span>{'\n'}
                   <span className="text-foreground">    process_with_llm(user_input)</span>{'\n'}
-                  <span style={{ color: 'oklch(0.75 0.18 264)' }}>else</span>
+                  <span style={{ color: '#4F46E5' }}>else</span>
                   <span className="text-foreground">:</span>{'\n'}
                   <span className="text-foreground">    </span>
                   <span className="text-muted-foreground"># 위협 차단</span>{'\n'}
                   <span className="text-foreground">    </span>
-                  <span style={{ color: 'oklch(0.75 0.18 264)' }}>raise</span>
+                  <span style={{ color: '#4F46E5' }}>raise</span>
                   <span className="text-foreground"> SecurityException(result.threat_score)</span>
                 </code>
               </pre>
