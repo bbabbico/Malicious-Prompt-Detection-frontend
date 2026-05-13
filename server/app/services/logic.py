@@ -47,17 +47,16 @@ class AnalyzeService:
         if not await RateLimiter.check_limits(user.user_id, user.tps_limit, user.daily_quota):
             return {"error": "Rate limit exceeded", "status": 429}
 
-        # 3. AI Inference
+        # 3. Content Analysis (To be replaced by the AI developer)
         risk_score = model_manager.predict_risk(prompt)
         action = "blocked" if risk_score > 80 else "allowed"
         process_time = int((time.time() - start_time) * 1000)
 
-        # 4. Asynchronous Logging (In FastAPI, this will be handled by BackgroundTasks)
-        # Here we just prepare the log object
+        # 4. Asynchronous Logging
         log = DetectionLog(
             key_id=api_key.key_id,
             raw_prompt=prompt,
-            used_track="multilingual-e5-small",
+            used_track="default-analyzer",
             risk_score_pct=risk_score,
             action_taken=action,
             process_time_ms=process_time
