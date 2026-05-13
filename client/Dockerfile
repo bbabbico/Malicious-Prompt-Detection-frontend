@@ -24,7 +24,8 @@ RUN pnpm build
 FROM nginx:stable-alpine
 
 # Copy built files from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Based on client/vite.config.ts, the outDir is ../dist/public
+COPY --from=build /dist/public /usr/share/nginx/html
 
 # Copy nginx configuration if you have a custom one
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
