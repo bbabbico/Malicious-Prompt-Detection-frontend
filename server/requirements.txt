@@ -7,9 +7,5 @@ aiomysql
 redis[hiredis]
 python-jose[cryptography]
 passlib[bcrypt]
-transformers
-torch
-numpy
-scikit-learn
 python-dotenv
 async-lru
