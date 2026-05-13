@@ -53,15 +53,12 @@ class AnalyzeService:
         action = "blocked" if is_malicious else "allowed"
         process_time = int((time.time() - start_time) * 1000)
 
-        # 4. Asynchronous Logging (Converting 1,000,000 scale to percentage for DB if needed, 
-        # but here we'll store as is or normalize to 0-100 for existing schema)
-        risk_percentage = round((risk_score / 1000000) * 100, 2)
-
+        # 4. Asynchronous Logging
         log = DetectionLog(
             key_id=api_key.key_id,
             raw_prompt=prompt,
             used_track="ai-model-v1",
-            risk_score_pct=risk_percentage,
+            risk_score_pct=float(risk_score),
             action_taken=action,
             process_time_ms=process_time
         )
@@ -69,7 +66,6 @@ class AnalyzeService:
         return {
             "is_malicious": is_malicious,
             "risk_score": risk_score,
-            "risk_percentage": risk_percentage,
             "action": action,
             "process_time_ms": process_time,
             "log_data": log
