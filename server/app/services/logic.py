@@ -3,7 +3,7 @@ from app.repositories.base import UserRepository, APIKeyRepository, LogRepositor
 from app.models.domain import User, APIKey, DetectionLog
 from app.core.security import get_password_hash, verify_password, create_access_token
 from app.core.rate_limit import RateLimiter
-from app.core.ai_core import model_manager
+from app.core.ai_core import analyze_prompt_threat
 import time
 import hashlib
 import uuid
@@ -37,8 +37,7 @@ class AnalyzeService:
         if not api_key:
             return {"error": "Invalid API Key", "status": 401}
 
-        # 2. Rate Limiting (Need User for limits)
-        # Ideally, APIKey should have relationship or we fetch user
+        # 2. Rate Limiting
         from sqlalchemy.future import select
         from app.models.domain import User
         user_result = await self.key_repo.db.execute(select(User).where(User.user_id == api_key.user_id))
@@ -47,23 +46,30 @@ class AnalyzeService:
         if not await RateLimiter.check_limits(user.user_id, user.tps_limit, user.daily_quota):
             return {"error": "Rate limit exceeded", "status": 429}
 
-        # 3. Content Analysis (To be replaced by the AI developer)
-        risk_score = model_manager.predict_risk(prompt)
-        action = "blocked" if risk_score > 80 else "allowed"
+        # 3. Content Analysis (Integrated with AI Developer's function)
+        is_malicious, risk_score = analyze_prompt_threat(prompt)
+        
+        # Determine action based on boolean result from AI
+        action = "blocked" if is_malicious else "allowed"
         process_time = int((time.time() - start_time) * 1000)
 
-        # 4. Asynchronous Logging
+        # 4. Asynchronous Logging (Converting 1,000,000 scale to percentage for DB if needed, 
+        # but here we'll store as is or normalize to 0-100 for existing schema)
+        risk_percentage = round((risk_score / 1000000) * 100, 2)
+
         log = DetectionLog(
             key_id=api_key.key_id,
             raw_prompt=prompt,
-            used_track="default-analyzer",
-            risk_score_pct=risk_score,
+            used_track="ai-model-v1",
+            risk_score_pct=risk_percentage,
             action_taken=action,
             process_time_ms=process_time
         )
         
         return {
+            "is_malicious": is_malicious,
             "risk_score": risk_score,
+            "risk_percentage": risk_percentage,
             "action": action,
             "process_time_ms": process_time,
             "log_data": log
