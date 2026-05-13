@@ -1,26 +1,44 @@
-services:
-  backend:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./server:/app
-    environment:
-      - ENV=development
-    restart: always
+version: '3.8'
 
-  frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+services:
+  # 1. API 게이트웨이 및 1차 방어선
+  nginx:
+    image: nginx:alpine
     ports:
       - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - backend
-    restart: always
+      - api_server
 
-networks:
-  default:
-    name: malicious-prompt-detection-network
+  # 2. 코어 비즈니스 로직 및 AI 엔진
+  api_server:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+    environment:
+      - DATABASE_URL=mysql+aiomysql://root:secure_password@mysql_db:3306/malicious-prompt-detection
+      - REDIS_URL=redis://redis_cache:6379/0
+      - JWT_SECRET_KEY=your_super_secret_key
+    depends_on:
+      - mysql_db
+      - redis_cache
+
+  # 3. 데이터 영구 저장소
+  mysql_db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=secure_password
+      - MYSQL_DATABASE=malicious-prompt-detection
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 4. 실시간 호출 한도(Quota) 제어용 인메모리 DB
+  redis_cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:
