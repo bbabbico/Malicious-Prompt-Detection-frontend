@@ -1,25 +1,21 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from app.api.endpoints import router as api_router
+from app.core.database import engine, Base
+import uvicorn
 
-app = FastAPI()
+app = FastAPI(title="Malicious Prompt Detection API")
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Adjust as needed for production
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+@app.on_event("startup")
+async def startup():
+    # Create tables if they don't exist
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+app.include_router(api_router, prefix="/api")
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the Malicious Prompt Detection API"}
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
+    return {"message": "Enterprise Malicious Prompt Detection API is running"}
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
