@@ -33,4 +33,4 @@ erDiagram
 우리 프로젝트는 FastAPI JWT 토큰 방식으로 회원 인증/인가를 처리하고,
 /api/login , /api/signup 이 엔드포인트로 로그인 / 회원가입을 처리한다.
 DB는 Mysql의 malicious-prompt-detection 이 스키마를 사용함, 이것도 도커로 따로 띄울거임. 위에 ERD 다이어그램을 참고하여 db를 구성함.
-
+프론트에 이미 로그인
