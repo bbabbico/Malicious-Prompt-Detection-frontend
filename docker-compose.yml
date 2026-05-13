@@ -11,27 +11,45 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   redis:
     image: redis:alpine
     restart: always
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   api_server:
     build:
       context: ./server
       dockerfile: Dockerfile
+    restart: always
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     environment:
       - DATABASE_URL=mysql+aiomysql://user:user_password@db/prompt_guard
       - REDIS_URL=redis://redis:6379/0
       - JWT_SECRET=your_jwt_secret_key
     volumes:
       - ./server:/app
-    # Using 'api_server' as the hostname for nginx upstream
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
 
   nginx:
     image: nginx:stable-alpine
@@ -43,12 +61,6 @@ services:
     depends_on:
       - api_server
       - frontend
-
-  frontend:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    # Internal port 80 is served by nginx service on external port 80
 
 volumes:
   db_data:
