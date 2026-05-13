@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+# Add ML libraries later as needed
+# torch
+# transformers
+# scikit-learn
+# pandas
+# numpy
