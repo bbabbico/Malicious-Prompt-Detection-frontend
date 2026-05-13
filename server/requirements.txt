@@ -1,10 +1,15 @@
 fastapi
-uvicorn
-pydantic
+uvicorn[standard]
+pydantic[email]
 python-multipart
-# Add ML libraries later as needed
-# torch
-# transformers
-# scikit-learn
-# pandas
-# numpy
+sqlalchemy[asyncio]>=2.0.0
+aiomysql
+redis[hiredis]
+python-jose[cryptography]
+passlib[bcrypt]
+transformers
+torch
+numpy
+scikit-learn
+python-dotenv
+async-lru

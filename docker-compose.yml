@@ -1,44 +1,58 @@
-version: '3.8'
-
 services:
-  # 1. API 게이트웨이 및 1차 방어선
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - api_server
-
-  # 2. 코어 비즈니스 로직 및 AI 엔진
-  api_server:
-    build: .
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
-    environment:
-      - DATABASE_URL=mysql+aiomysql://root:secure_password@mysql_db:3306/malicious-prompt-detection
-      - REDIS_URL=redis://redis_cache:6379/0
-      - JWT_SECRET_KEY=your_super_secret_key
-    depends_on:
-      - mysql_db
-      - redis_cache
-
-  # 3. 데이터 영구 저장소
-  mysql_db:
+  db:
     image: mysql:8.0
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=secure_password
-      - MYSQL_DATABASE=malicious-prompt-detection
+      MYSQL_DATABASE: prompt_guard
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
-  # 4. 실시간 호출 한도(Quota) 제어용 인메모리 DB
-  redis_cache:
+  redis:
     image: redis:alpine
+    restart: always
     ports:
       - "6379:6379"
 
+  api_server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=mysql+aiomysql://user:user_password@db/prompt_guard
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=your_jwt_secret_key
+    volumes:
+      - ./server:/app
+    # Using 'api_server' as the hostname for nginx upstream
+
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api_server
+      - frontend
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    # Internal port 80 is served by nginx service on external port 80
+
 volumes:
-  mysql_data:
+  db_data:
+
+networks:
+  default:
+    name: malicious-prompt-detection-network
