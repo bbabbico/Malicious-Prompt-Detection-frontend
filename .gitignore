@@ -109,4 +109,31 @@ temp/
 .webdev/
 
 # Manus version file (auto-generated, not part of source)
-frontend/public/__manus__/version.json
+client/public/__manus__/version.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
