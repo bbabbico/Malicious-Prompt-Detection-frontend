@@ -8,7 +8,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user_password
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
@@ -21,7 +21,7 @@ services:
     image: redis:alpine
     restart: always
     ports:
-      - "6379:6379"
+      - "6380:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
