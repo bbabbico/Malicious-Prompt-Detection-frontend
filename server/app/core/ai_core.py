@@ -8,7 +8,7 @@ def analyze_prompt_threat(prompt: str) -> Tuple[bool, int]:
         prompt (str): 사용자의 입력 프롬프트
         
     Returns:
-        Tuple[bool, int]: (악성 여부 True/False, 위험도 점수 0 ~ 1,000,000)
+        Tuple[bool, int]: (악성 여부 True/False, 위험도 점수 0 ~ 100
     """
     # TODO: AI 개발자가 이 부분을 실제 모델 추론 로직으로 교체할 예정입니다.
     import random
