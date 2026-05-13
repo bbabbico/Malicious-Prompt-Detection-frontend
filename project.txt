@@ -1,0 +1,31 @@
+밑에는 우리 프로젝트의 ERD 다이어그램임.
+erDiagram
+    USERS ||--o{ API_KEYS : "발급 (1:N)"
+    API_KEYS ||--o{ DETECTION_LOGS : "사용됨 (1:N)"
+
+    USERS {
+        bigint user_id PK
+        varchar email "로그인 ID"
+        varchar password_hash 
+        int daily_quota "일일 최대 호출량 (예: 1000)"
+        int tps_limit "초당 최대 호출량 (예: 5)"
+        timestamp created_at 
+    }
+
+    API_KEYS {
+        bigint key_id PK
+        bigint user_id FK
+        varchar key_name 
+        varchar key_prefix 
+        varchar key_hash 
+        timestamp expires_at 
+    }
+
+    DETECTION_LOGS {
+        bigint log_id PK
+        bigint key_id FK
+        text raw_prompt 
+        varchar used_track 
+        float risk_score_pct 
+        varchar action_taken 
+    }
