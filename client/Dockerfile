@@ -10,6 +10,7 @@ WORKDIR /app
 
 # Copy package.json and pnpm-lock.yaml (if exists)
 COPY package.json pnpm-lock.yaml* ./
+COPY patches ./patches
 
 # Install dependencies
 RUN pnpm install
