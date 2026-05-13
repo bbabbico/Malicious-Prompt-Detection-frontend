@@ -27,3 +27,6 @@
     * Redis를 사용해 유저의 `daily_quota`와 `tps_limit` 차감. 한도 초과 시 429 에러 반환.
     * Rule-based 필터링 후 통과된 텍스트만 AI 모델로 추론.
     * 추론 완료 후 `BackgroundTasks`를 통해 `DETECTION_LOGS`에 비동기로 인서트하여 응답 지연 방지.
+
+### 5. 참고 파일
+1. docker-compose에 인프라 스트럭쳐 뼈대가 있으니 이거 참고해서 도커파일들 작성
