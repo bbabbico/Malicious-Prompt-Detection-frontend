@@ -7,6 +7,7 @@
 - `server`: FastAPI 기반의 백엔드 API 및 머신러닝 모델
 - `client`: React 및 Vite를 사용한 프론트엔드 대시보드
 - `shared`: 프론트엔드와 백엔드에서 공유하는 상수 및 설정
+- `AI`    : server/app/core/ai_core.py 에 임베딩-모델 예측하는 로직 2개의 파트(스몰모델, 라지모델) 작성하시면 됩니다.
 
 ## Docker로 실행하기
 
