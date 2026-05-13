@@ -29,4 +29,5 @@
     * 추론 완료 후 `BackgroundTasks`를 통해 `DETECTION_LOGS`에 비동기로 인서트하여 응답 지연 방지.
 
 ### 5. 참고 파일
-1. docker-compose에 인프라 스트럭쳐 뼈대가 있으니 이거 참고해서 작업
+1. docker-compose에 인프라 스트럭쳐 뼈대가 있으니 이거 참고해서 작업.
+2. nginx.conf 이건 nginx 구성 파일임. 나중에 수정 할꺼 수정하고, 파일 위치 옮겨도 됨.
