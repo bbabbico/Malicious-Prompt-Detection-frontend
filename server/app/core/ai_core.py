@@ -1,20 +1,32 @@
+import sys
+from pathlib import Path
 from typing import Tuple
 
-def analyze_prompt_threat(prompt: str) -> Tuple[bool, int]:
+# 프로젝트 루트를 Python path에 추가하여 backend 모듈을 찾을 수 있게 함
+BASE_DIR = Path(__file__).parent.parent.parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.append(str(BASE_DIR))
+
+try:
+    from backend.model.detector import analyze_prompt
+except ImportError:
+    # 모듈을 찾지 못할 경우를 대비한 대체 로직 (또는 에러 처리)
+    analyze_prompt = None
+
+def analyze_prompt_threat(prompt: str, model_type: int = 0) -> Tuple[bool, int]:
     """
-    AI 개발자가 구현할 핵심 분석 함수입니다.
+    AI 모델을 사용하여 프롬프트의 위험을 분석합니다.
     
     Args:
         prompt (str): 사용자의 입력 프롬프트
+        model_type (int): 사용할 모델 타입 (0: Small, 1: Large)
         
     Returns:
         Tuple[bool, int]: (악성 여부 True/False, 위험도 점수 0 ~ 100)
     """
-    # TODO: AI 개발자가 이 부분을 실제 모델 추론 로직으로 교체할 예정입니다.
-    import random
+    if analyze_prompt:
+        return analyze_prompt(prompt, model_type)
     
-    # 임시 로직: 랜덤하게 결과 반환
-    is_malicious = random.choice([True, False])
-    risk_score = random.randint(0, 100)
-    
-    return is_malicious, risk_score
+    # 모델 로드 실패 시 기본값 (안전을 위해 False 반환)
+    print("Warning: MaliciousPromptDetector not found. Returning default values.")
+    return False, 0
